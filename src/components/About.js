@@ -4,7 +4,7 @@ const About = () => (
   <div className='container'>
     <h1>About Me</h1>
     <div className="about">
-              <img src='/pic.png'></img>
+              <img src={`${process.env.PUBLIC_URL}/pic.png`}></img>
       <div className="about-content">
           <p>I've been a consultant in the EY AI & Data team for the past two years.</p>
           <p>I started as a Data Analyst developing Power BI applications for clients, and have transitioned into the GenAI space since 2023.</p>

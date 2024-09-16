@@ -6,7 +6,7 @@ const Header = () => (
     <header className="header">
         <div className="header-content">
             {/* <div className='header-logo'> */}
-            <img src="/mo_white_cd.png" alt="Blog Logo" />
+            <img src={`${process.env.PUBLIC_URL}/mo_white_cd.png`} alt="Blog Logo" />
             {/* </div> */}
             
             <nav>
