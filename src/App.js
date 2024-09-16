@@ -8,7 +8,7 @@ import Sandbox from './components/Sandbox';
 
 function App() {
   return (
-      <Router>
+      <Router basename='/moblog'>
         <div className="app">
           <Header />
           <Routes>
