@@ -10,7 +10,50 @@ const Sandbox = () => {
   const [prompt, setPrompt] = useState('');
   const [query, setQuery] = useState('');
   const [answer, setAnswer] = useState('');
+  //RAG stuff
+  const [file, setFile] = useState(null);
+  const [knowledge, setKnowledge] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
+  const handleFileChange = (e) => {
+    const selected = e.target.files[0];
+    if (selected) {
+      setFile(selected);
+      setError(null);
+    }
+  };
+
+  const handleExtract = async () => {
+    if (!file) return setError("Please select a file first.");
+
+    setLoading(true);
+    setError(null);
+
+    try {
+      const formData = new FormData();
+      formData.append("file", file);
+      // Fetch from Functions API, set in PROCESS_ENV
+      const API_BASE =
+      process.env.REACT_APP_FUNCTIONS_API ||
+      "/api"; // fallback if missing
+
+      const res = await fetch(`${API_BASE}/extract`, {
+        method: "POST",
+        body: formData,
+      });
+
+      if (!res.ok) throw new Error("Extraction failed");
+
+      const data = await res.json();
+      setKnowledge(data.text); //Response: {"text": "Lorem ipsum..."}
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+  
   const keySubmit = (e) => {
     e.preventDefault()
 
@@ -103,6 +146,28 @@ const Sandbox = () => {
         <button type="submit" className='button-style' style={{marginLeft:'10px'}}>Enter</button>
       </form>
       {message && <p style={{fontSize: '12px'}}>{message}</p>}
+    </div>
+    <div className='container'>
+      <form onSubmit={handleExtract}>
+        <label>
+          (RAG) Upload File Here:
+          <br>
+          <input
+          type="file"
+          onChange={handleFileChange}
+          accept=".pdf,.txt,.docx"
+          />
+
+          <button
+          onClick={handleExtract}
+          disabled={!file || loading}
+          className="px-4 py-2 bg-blue-600 text-white rounded-lg disabled:opacity-50"
+          >
+          {loading ? "Extracting..." : "Extract Text"}
+          </button>
+          {error && <p className="text-red-500 text-sm">{error}</p>}
+        </label>
+      </form>
     </div>
     <div className='container'>
       <form onSubmit={handleQuery}>
