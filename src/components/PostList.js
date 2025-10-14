@@ -5,7 +5,8 @@ const posts = [
     {id:0, title: 'Generative AI Basics', description: 'A basic introduction to Generative AI.'},
     {id:1, title: 'Prompt Engineering', description: 'First Step of \'Customizing\' LLMs'},
     {id:2, title: 'Retrieval Augmented Generation', description: 'Prompt Engineering on Proprietary Data'},
-    {id:3, title: 'Sandbox is out!', description: 'You can actually play around with some of the concepts in my guide here :D'}
+    {id:3, title: 'Sandbox is out!', description: 'You can actually play around with some of the concepts in my guide here :D'},
+    {id:4, title: 'RAG available in Sandbox!', description: 'Test out RAG systems in the sandbox now!'}
 ];
 
 const PostList = () => (
