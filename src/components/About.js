@@ -6,10 +6,10 @@ const About = () => (
     <div className="about">
               <img src={`${process.env.PUBLIC_URL}/pic.png`}></img>
       <div className="about-content">
-          <p>I've been a consultant in the EY AI & Data team for the past two years.</p>
-          <p>I started as a Data Analyst developing Power BI applications for clients, and have transitioned into the GenAI space since 2023.</p>
-          <p>I am currently working on developing full stack GenAI apps for clients.</p>
-          <p>For more details please check out my <a href="https://linked.in/hazimshahridan" target='blank'>LinkedIn</a></p>
+          <p>Senior Consultant @ EY's AI Innovation Labs, Kuala Lumpur.</p>
+          <p>Been in industry for the past 3 years, starting off as a Data Analyst building PowerBI dashboards for clients, to building full-stack GenAI apps since 2023.</p>
+          <p>I've worked on award winning projects in multinational clients in Malaysia, using AI to help bring value to their businesses.</p>
+          <p>Check out my <a href="https://linked.in/hazimshahridan" target='blank'>LinkedIn</a> if you want to find out more.</p>
       </div>
     </div>
     </div>
