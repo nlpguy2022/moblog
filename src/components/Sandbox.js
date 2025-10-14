@@ -15,6 +15,13 @@ const Sandbox = () => {
   const [knowledge, setKnowledge] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [config, setConfig] = useState(null);
+
+  useEffect(() => {
+    fetch("/config.json")
+      .then((res) => res.json())
+      .then(setConfig);
+  }, []);
 
   const handleFileChange = (e) => {
     const selected = e.target.files[0];
@@ -34,11 +41,9 @@ const Sandbox = () => {
       const formData = new FormData();
       formData.append("file", file);
       // Fetch from Functions API, set in PROCESS_ENV
-      const API_BASE =
-      process.env.REACT_APP_FUNCTIONS_API ||
-      "/api"; // fallback if missing
+      if (!config) return <p>Loading configuration...</p>;
 
-      const res = await fetch(`${API_BASE}/extract`, {
+      const res = await fetch(`${config.functionsApi}/extract`, {
         method: "POST",
         body: formData,
       });
